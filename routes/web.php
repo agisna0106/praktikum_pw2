@@ -1,18 +1,20 @@
 <?php
 
-use App\Http\Controllers\BukuController;
-use App\Http\Controllers\UserController;
-use App\Models\User;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/greeting', function(){
-    $user = User::first();
-    return view('greeting', compact('user'));
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/books', [BukuController::class, 'index'])->name('books.index');
-Route::get('/books/{id}', [BukuController::class, 'show'])->name('books.show');
+require __DIR__.'/auth.php';
