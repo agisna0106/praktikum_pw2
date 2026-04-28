@@ -14,7 +14,7 @@ class BookshelfSeeder extends Seeder
      */
     public function run(): void
     {
-        FacadesDB::table('bookshelf')->insert([
+        FacadesDB::table('bookshelves')->insert([
             [
                 'id' => 1,
                 'code' => 'A1',

@@ -1,25 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Rak Buku</title>
-</head>
-<body>
-    <h1>Daftar Rak Buku</h1>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Daftar Buku') }}
+        </h2>
+    </x-slot>
+    
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="mb-6">
+                <x-primary-button tag="a" href="{{ route('books.create') }}">Tambah Data Buku</x-primary-button>
+            </div>
+            
+            <x-table>
+                <x-slot name="header">
+                    <tr>
+                        <th>#</th>
+                        <th>Judul</th>
+                        <th>Penulis</th>
+                        <th>Tahun</th>
+                        <th>Penerbit</th>
+                        <th>Kota</th>
+                        <th>Cover</th>
+                        <th>Kuantitas</th>
+                        <th>Kode Rak</th>
+                    </tr>
+                </x-slot>
 
-    @if ($bookshelves->isEmpty())
-        <p>Tidak ada rak buku.</p>
-    @else
-        <ul>
-            @foreach ($bookshelves as $bookshelf)
-                <li>
-                    <a href="{{ route('books.show', $bookshelf->id) }}">
-                        {{ $bookshelf->name }} ({{ $bookshelf->books_count }} buku)
-                    </a>
-                </li>
-            @endforeach
-        </ul>
-    @endif
-</body>
-</html>
+                @php $num=1; @endphp
+                @foreach($books as $book)
+                    <tr>
+                        <td>{{ $num++ }}</td>
+                        <td>{{ $book->title }}</td>
+                        <td>{{ $book->author }}</td>
+                        <td>{{ $book->year }}</td>
+                        <td>{{ $book->publisher }}</td>
+                        <td>{{ $book->city }}</td>
+                        <td>
+                            @if($book->cover)
+                                <img src="{{ asset('storage/cover_buku/'.$book->cover) }}" width="100px" alt="Cover"/>
+                            @else
+                                <span class="text-gray-400">No image</span>
+                            @endif
+                        </td>
+                        <td>{{ $book->quantity }}</td>
+                        <td>{{ $book->bookshelf->code }}-{{ $book->bookshelf->name }}</td>
+                    </tr>
+                @endforeach
+            </x-table>
+        </div>
+    </div>
+</x-app-layout>

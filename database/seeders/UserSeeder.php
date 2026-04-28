@@ -17,13 +17,21 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
-            'npm'       => 12345,
-            'username'  => 'Chohan123',
-            'first_name'=> 'Cho',
-            'last_name' => 'Han',
-            'email'     => 'chohan@gmail.com',
-            'password'  => Hash::make('password')
+        Role::create(['name' => 'mahasiswa2']);
+        Role::create(['name' => 'pustakawan3']);
+        Permission::create(['name' => 'show book','guard_name' => 'api']);
+        Permission::create(['name' => 'edit book', 'guard_name' => 'api']);
+
+        $user = User::create([
+            'npm'       => 2220122004,
+            'username'  => 'Udin',
+            'first_name'=> 'Udin',
+            'last_name' => 'Udin 2',
+            'email'     => 'udin4@gmail.com',
+            'password'  => bcrypt('password')
         ]);
+
+        $user->assignRole('mahasiswa2');
+        $user->givePermissionTo('show book');
     }
 }
