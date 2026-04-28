@@ -3,30 +3,27 @@
         @csrf
 
         <!-- NPM -->
-        <div class="mt-4">
+        <div>
             <x-input-label for="npm" :value="__('NPM')" />
-            <x-text-input id="npm" class="block mt-1 w-full" type="number" name="npm" :value="old('npm')" required autofocus autocomplete="npm" />
+            <x-text-input id="npm" class="block mt-1 w-full" type="number" name="npm" :value="old('npm')" required  />
             <x-input-error :messages="$errors->get('npm')" class="mt-2" />
         </div>
-
         <!-- Username -->
-        <div class="mt-4">
+        <div>
             <x-input-label for="username" :value="__('Username')" />
-            <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="name" />
+            <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required  />
             <x-input-error :messages="$errors->get('username')" class="mt-2" />
         </div>
-
         <!-- First Name -->
-        <div class="mt-4">
+        <div>
             <x-input-label for="first_name" :value="__('First Name')" />
-            <x-text-input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" required autofocus autocomplete="name" />
+            <x-text-input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" required  />
             <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
         </div>
-
         <!-- Last Name -->
-        <div class="mt-4">
+        <div>
             <x-input-label for="last_name" :value="__('Last Name')" />
-            <x-text-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus autocomplete="name" />
+            <x-text-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required  />
             <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
         </div>
 
