@@ -21,8 +21,8 @@
                         <th>Penerbit</th>
                         <th>Kota</th>
                         <th>Cover</th>
-                        <th>Kuantitas</th>
                         <th>Kode Rak</th>
+                        <th>Aksi</th>
                     </tr>
                 </x-slot>
 
@@ -42,8 +42,16 @@
                                 <span class="text-gray-400">No image</span>
                             @endif
                         </td>
-                        <td>{{ $book->quantity }}</td>
                         <td>{{ $book->bookshelf->code }}-{{ $book->bookshelf->name }}</td>
+                        <td class="flex flex-auto">
+                            <a href="{{ route('books.edit', $book->id) }}" class="mt-3"><i class="fa-solid fa-pencil"></i></a>
+                            <form action="{{ route('books.destroy', $book->id) }}" method="post" onsubmit="return confirm('Apakah anda yakin?');">
+                                @csrf
+                                @method('delete')
+                                <x-danger-button type="submit" class="bg-transparent mt-3 ml-2"><i class="fa-solid fa-trash text-red-600 ml-1"></i></x-danger-button>
+                                
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </x-table>
