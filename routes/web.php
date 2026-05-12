@@ -21,10 +21,13 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function(){
     Route::get('/books', [BukuController::class, 'index'])->name('books');
     Route::get('/books/create', [BukuController::class, 'create'])->name('books.create');
+    Route::get('/books/print', [BukuController::class, 'printpdf'])->name('books.print');
+
     Route::post('/books', [BukuController::class, 'store'])->name('books.store');
     Route::get('/books/{id}/edit', [BukuController::class, 'edit'])->name('books.edit');
     Route::match(['put', 'patch'], '/books/{id}', [BukuController::class, 'update'])->name('books.update');
     Route::delete('/books/{id}', [BukuController::class, 'destroy'])->name('books.destroy');
+
 });
 
 require __DIR__.'/auth.php';

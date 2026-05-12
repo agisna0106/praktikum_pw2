@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Bookshelf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BukuController extends Controller
 {
@@ -113,6 +114,14 @@ class BukuController extends Controller
         );
 
         return redirect()->route('books')->with($notification);
+    }
+
+    public function printpdf()
+    {
+        $books = Book::all();
+
+        $pdf = Pdf::loadView('books.print', ['books' => $books]);
+        return $pdf->stream('laporan_buku.pdf');
     }
 
 }

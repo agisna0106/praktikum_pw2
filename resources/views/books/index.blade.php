@@ -9,6 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="mb-6">
                 <x-primary-button tag="a" href="{{ route('books.create') }}">Tambah Data Buku</x-primary-button>
+                <x-danger-button tag="a" href="{{ route('books.print') }}" target="blank">Export PDF</x-danger-button>
             </div>
             
             <x-table>
@@ -49,7 +50,7 @@
                                 @csrf
                                 @method('delete')
                                 <x-danger-button type="submit" class="bg-transparent mt-3 ml-2"><i class="fa-solid fa-trash text-red-600 ml-1"></i></x-danger-button>
-                                
+                                {{-- <x-danger-button type="submit">Delete</x-danger-button> --}}
                             </form>
                         </td>
                     </tr>
