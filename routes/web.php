@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function(){
     Route::match(['put', 'patch'], '/books/{id}', [BukuController::class, 'update'])->name('books.update');
     Route::delete('/books/{id}', [BukuController::class, 'destroy'])->name('books.destroy');
     Route::get('/export-books', [ExcelController::class, 'exportBook'])->name('books.export');
+    Route::post('/import-books', [ExcelController::class, 'import'])->name('books.import');
 });
 
 require __DIR__.'/auth.php';

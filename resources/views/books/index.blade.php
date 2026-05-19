@@ -11,6 +11,7 @@
                 <x-primary-button tag="a" href="{{ route('books.create') }}">Tambah Data Buku</x-primary-button>
                 <x-danger-button tag="a" href="{{ route('books.print') }}" target="blank">Export PDF</x-danger-button>
                 <x-primary-button tag="a" href="{{ route('books.export') }}" target="blank" class="bg-green-700">Export Excel</x-primary-button>
+                <x-primary-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'importBook')" class="bg-green-700">Import Excel</x-primary-button>
             </div>
             
             <x-table>
@@ -59,4 +60,11 @@
             </x-table>
         </div>
     </div>
+    <x-modal name="importBook">
+        <form action="{{ route('books.import') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <x-file-input name="file" required/>
+            <x-primary-button>Upload</x-primary-button>
+        </form>
+    </x-modal>
 </x-app-layout>
