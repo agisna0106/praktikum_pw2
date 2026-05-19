@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +28,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/books/{id}/edit', [BukuController::class, 'edit'])->name('books.edit');
     Route::match(['put', 'patch'], '/books/{id}', [BukuController::class, 'update'])->name('books.update');
     Route::delete('/books/{id}', [BukuController::class, 'destroy'])->name('books.destroy');
-
+    Route::get('/export-books', [ExcelController::class, 'exportBook'])->name('books.export');
 });
 
 require __DIR__.'/auth.php';

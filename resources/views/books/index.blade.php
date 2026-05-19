@@ -10,6 +10,7 @@
             <div class="mb-6">
                 <x-primary-button tag="a" href="{{ route('books.create') }}">Tambah Data Buku</x-primary-button>
                 <x-danger-button tag="a" href="{{ route('books.print') }}" target="blank">Export PDF</x-danger-button>
+                <x-primary-button tag="a" href="{{ route('books.export') }}" target="blank" class="bg-green-700">Export Excel</x-primary-button>
             </div>
             
             <x-table>
